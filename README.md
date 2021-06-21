@@ -1,10 +1,10 @@
 <br />
 <br />
 <h1 align="center">
-    <img alt="letmeask" src=".github/assets/logo.svg width="420px" /> 
-    <br />
-    <br />
-    NextJS | Firebase | Typescript
+  <img alt="letmeask" src=".github/assets/logo.svg" width="420px" /> 
+  <br />
+  <br />
+  NextJS | Firebase | Typescript
 </h1>
 
 <p align="center">
