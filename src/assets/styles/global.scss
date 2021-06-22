@@ -5,25 +5,25 @@
 }
 
 :root {
-  --background: #F8F8F8;
+  --background: #f8f8f8;
 
   --gray-dark: #737380;
-  --gray-medium: #A8A8B3;
-  --gray-light: #CECECE;
+  --gray-medium: #a8a8b3;
+  --gray-light: #cecece;
 
-  --pink-dark: #E559F9;
-  --pink-medium: #FF59F8;
-  --pink-light: #D67EE2;
+  --pink-dark: #e559f9;
+  --pink-medium: #ff59f8;
+  --pink-light: #d67ee2;
 
-  --black: ##29292E;
+  --black: #29292e;
 
-  --white: #FEFEFE;
+  --white: #fefefe;
 
-  --purple: #6F4BD8;
-  
-  --red: #D73754;
+  --purple: #6f4bd8;
 
-  --blue: #485BFF;
+  --red: #d73754;
+
+  --blue: #485bff;
 }
 
 body {
@@ -31,6 +31,18 @@ body {
   color: var(--black);
 }
 
-body, input, button, textarea {
+body,
+input,
+button,
+textarea {
   font: 400 1rem "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--black);
 }
