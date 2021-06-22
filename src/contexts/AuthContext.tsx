@@ -20,7 +20,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState<boolean>(false);
 
   const signIn = async () => {
-    console.log(firebase);
     try {
       setLoading(true);
       firebase.auth();
