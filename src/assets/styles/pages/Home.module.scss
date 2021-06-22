@@ -31,6 +31,10 @@
     margin-top: 1rem;
     color: var(--background);
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .content {
