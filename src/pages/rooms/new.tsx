@@ -5,8 +5,11 @@ import Button from "../../components/Button";
 import illustrationSVG from "../../assets/images/illustration.svg";
 import logoSVG from "../../assets/images/logo.svg";
 import styles from "../../assets/styles/pages/NewRoom.module.scss";
+// import useAuth from "../../hooks/useAuth";
 
-export default function newRoom() {
+export default function NewRoom() {
+  // const { user } = useAuth();
+
   return (
     <div className={styles.pageAuth}>
       <Head>

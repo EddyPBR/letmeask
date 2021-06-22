@@ -1,19 +1,22 @@
 import Head from "next/head";
 import Image from "next/image";
 import Router from "next/router";
-// import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 import Button from "../components/Button";
-import illustrationSVG from "../assets/images/illustration.svg";
 import logoSVG from "../assets/images/logo.svg";
-import googleIconImg from "../assets/images/google-icon.svg";
-
+import googleIconSVG from "../assets/images/google-icon.svg";
+import illustrationSVG from "../assets/images/illustration.svg";
 import styles from "../assets/styles/pages/Home.module.scss";
 
 export default function Home() {
-  // const { user, signIn } = useAuth();
+  const { user, signInWithGoogle } = useAuth();
 
-  function NavigateToNewRoom() {
-    Router.push("/rooms/new/");
+  async function handleCreateRoom() {
+    if (!user) {
+      await signInWithGoogle();
+    }
+
+    Router.push("/rooms/new");
   }
 
   return (
@@ -21,7 +24,7 @@ export default function Home() {
       <Head>
         <title>Letmeask</title>
       </Head>
-      
+
       <aside className={styles.info}>
         <Image
           src={illustrationSVG}
@@ -34,8 +37,12 @@ export default function Home() {
       <main className={styles.content}>
         <div>
           <Image src={logoSVG} alt="Letmeask" />
-          <button type="button" className={styles.googleButton} onClick={NavigateToNewRoom}>
-            <Image src={googleIconImg} alt="Logo do Google" />
+          <button
+            type="button"
+            className={styles.googleButton}
+            onClick={handleCreateRoom}
+          >
+            <Image src={googleIconSVG} alt="Logo do Google" />
             Crie sua sala com o google
           </button>
           <div className={styles.separator}>ou entre em uma sala</div>
