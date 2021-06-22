@@ -16,8 +16,9 @@ export default function Home() {
   return (
     <div className={styles.pageAuth}>
       <Head>
-        <title>Letmetalk | Login</title>
+        <title>Letmetalk</title>
       </Head>
+      
       <aside className={styles.info}>
         <Image
           src={illustrationSVG}
