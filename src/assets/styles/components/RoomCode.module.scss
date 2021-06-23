@@ -1,0 +1,59 @@
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: .8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.roomCode {
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  background: var(--white);
+  border: 1px solid var(--purple);
+  cursor: pointer;
+
+  display: flex;
+
+  > div {
+    background: var(--purple);
+    padding: 0 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  > span {
+    display: block;
+    align-self: center;
+    flex: 1;
+    padding: 0 1rem 0 0.75rem;
+    width: 15rem;
+    font: 500 0.875rem "Roboto", sans-serif;
+  }
+}
+
+.roomCode.copied {
+  &::after {
+    content: "Código copiado";
+    position: absolute;
+    background: var(--black);
+    padding: 0.225rem 1rem;
+    color: var(--white);
+    font-size: 0.75rem;
+    cursor: auto;
+    width: 6rem;
+    border-radius: .375rem;
+    margin-left: 18.5rem;
+    margin-top: 0.5rem;
+    opacity: 1;
+    animation: fadeOut 3s forwards;
+  }
+}
