@@ -50,6 +50,7 @@ export default function NewRoom() {
           secondary: "#F56565"
         }
       });
+      return;
     }
     
     Router.push(`/rooms/${firebaseRoom.key}`);
