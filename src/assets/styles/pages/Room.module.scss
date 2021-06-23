@@ -74,3 +74,20 @@
     }
   }
 }
+
+.userInfo {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+
+  > span {
+    margin-left: 0.5rem;
+    color: var(--black);
+    font: 500 0.875rem "Roboto", sans-serif;
+  }
+}

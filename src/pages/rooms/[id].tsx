@@ -20,6 +20,8 @@ export default function Room() {
 
   const [newQuestion, setNewQuestion] = useState("");
 
+  console.log(user?.avatar);
+
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
 
@@ -77,10 +79,19 @@ export default function Room() {
           />
 
           <div>
-            <span>
-              Para enviar uma pergunta,{" "}
-              <button type="button">faça seu login</button>.
-            </span>
+            {
+              user ? (
+                <div className={styles.userInfo}>
+                  <Image src={user?.avatar} alt={user.name} width="32" height="32" />
+                  <span>{user.name}</span>
+                </div>
+              ) : (
+                <span>
+                  Para enviar uma pergunta,{" "}
+                  <button type="button">faça seu login</button>.
+                </span>
+              )
+            }
             <Button type="submit" disabled={!user}>
               Enviar pergunta
             </Button>
