@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import CopySVG from "../assets/images/copy.svg";
 import styles from "../assets/styles/components/RoomCode.module.scss";
 
@@ -13,21 +14,27 @@ export default function RoomCode({ code }: RoomCodeProps) {
   async function copyRoomCodeToClipboard() {
     navigator.clipboard.writeText(code);
     setCopied(true);
-    setCopiedToFalse();
-  }
 
-  function setCopiedToFalse() {
-    setTimeout(() => {
-      setCopied(false);
-    }, 3200);
+    toast.success("Copiado para o clipboard!", {
+      style: {
+        background: "#68D391",
+        color: "#FFF"
+      },
+      iconTheme: {
+        primary: "#FFF",
+        secondary: "#68D391"
+      }
+    });
   }
 
   return (
-    <button className={`${styles.roomCode} ${copied ? styles.copied : ""}`} onClick={copyRoomCodeToClipboard}>
-      <div>
-        <Image src={CopySVG} alt="Copiar código da sala" />
-      </div>
-      <span>Sala: {code}</span>
-    </button>
+    <>
+      <button className={`${styles.roomCode} ${copied ? styles.copied : ""}`} onClick={copyRoomCodeToClipboard}>
+        <div>
+          <Image src={CopySVG} alt="Copiar código da sala" />
+        </div>
+        <span>Sala: {code}</span>
+      </button>
+    </>
   );
 }

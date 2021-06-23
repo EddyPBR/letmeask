@@ -3,7 +3,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { database } from "../../services/firebase";
 import { useState, useEffect, FormEvent } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import RoomCode from "../../components/RoomCode";
 import Button from "../../components/Button";
@@ -177,8 +177,6 @@ export default function Room() {
           </div>
         </form>
       </main>
-
-      <Toaster position="top-right" />
     </>
   );
 }

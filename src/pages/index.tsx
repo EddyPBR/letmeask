@@ -3,7 +3,7 @@ import Image from "next/image";
 import Router from "next/router";
 import { database } from "../services/firebase";
 import { useState, FormEvent } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import Button from "../components/Button";
 import logoSVG from "../assets/images/logo.svg";
@@ -97,8 +97,6 @@ export default function Home() {
           </form>
         </div>
       </main>
-
-      <Toaster position="top-right" />
     </div>
   );
 }
