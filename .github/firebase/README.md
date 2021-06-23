@@ -1,14 +1,16 @@
+<br />
 <h1 align="center">
-  <img alt="Firebase configuração" src="https://github.com/EddyPBR/letmeask/blob/main/.github/assets/logo.svg" width="420px" /> 
+  <img alt="Firebase configuração" src="https://github.com/EddyPBR/letmeask/blob/main/.github/assets/firebase-logo.png" width="180px" /> 
   <br />
   <br />
+  Guia Firebase
 </h1>
-
-# Guia Firebase
+<br />
 
 Para executarmos o projeto devemos configurar o firebase para setarmos algumas configurações,
 mas o firebase é simples, fácil e rápido de ser configurado, esse guia é para lhe ajudar a 
 configurar o projeto, então vamos lá? :)
+
 <br />
 
 ## Passo-a-passo
@@ -56,6 +58,7 @@ clique em `Realtime Database`, agora selecione a aba `Regras`, enfim na box com 
 ```
 
 Pronto seu banco de dados esta configurado!
+
 <br />
 
 ## Continuando
