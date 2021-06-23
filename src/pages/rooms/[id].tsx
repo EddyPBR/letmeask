@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import { database } from "../../services/firebase";
@@ -36,7 +36,7 @@ type RoomQueryParams = {
 };
 
 export default function Room() {
-  const { user } = useAuth();
+  const { user, signInWithGoogle } = useAuth();
   const router = useRouter();
   const { id: roomId }: RoomQueryParams = router.query;
 
@@ -123,9 +123,17 @@ export default function Room() {
     setNewQuestion("");
   }
 
+  async function handleCreateRoom() {
+    if (!user) {
+      await signInWithGoogle();
+    }
+  }
+
   return (
     <>
       <Head>
+        <meta property="og:title" content={`Letmeask ${title ? title : ""}`} />
+        <meta property="og:description" content={`A sala ${title} está ao vivo e com tudo preparado para retirar suas dúvidas!`} />
         <title>Sala {`${title ? title : "aberta"}`} | Letmetask</title>
       </Head>
 
@@ -167,7 +175,7 @@ export default function Room() {
               ) : (
                 <span>
                   Para enviar uma pergunta,{" "}
-                  <button type="button">faça seu login</button>.
+                  <button type="button" onClick={handleCreateRoom}>faça seu login</button>.
                 </span>
               )
             }

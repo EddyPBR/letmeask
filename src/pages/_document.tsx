@@ -6,11 +6,11 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           {/* Facebook */}
-          <meta property="og:url"           content="https://letmeask-virid.vercel.app/" />
-          <meta property="og:type"          content="website" />
-          <meta property="og:title"         content="Letmeask" />
-          <meta property="og:description"   content="Sistema de ranqueamento de perguntas para lives!" />
-          <meta property="og:image"         content="https://letmeask-virid.vercel.app/letmeask.jpg" />
+          <meta property="og:url" content="https://letmeask-virid.vercel.app/" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="Letmeask" />
+          <meta property="og:description" content="Tire dúvidas de sua audiência em tempo real com ajuda de ranqueamento de perguntas!" />
+          <meta property="og:image" content="https://letmeask-virid.vercel.app/letmeask.jpg" />
           
           {/* Google fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
