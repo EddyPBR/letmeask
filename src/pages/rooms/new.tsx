@@ -4,6 +4,7 @@ import Link from "next/link";
 import Router from "next/router";
 import { database } from "../../services/firebase";
 import { useState, FormEvent } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import Button from "../../components/Button";
 import illustrationSVG from "../../assets/images/illustration.svg";
@@ -18,6 +19,16 @@ export default function NewRoom() {
     event.preventDefault();
 
     if(newRoom.trim() === "") {
+      toast.error("Campo deve ser preenchido!", {
+        style: {
+          background: "#F56565",
+          color: "#FFF"
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#F56565"
+        }
+      });
       return;
     }
 
@@ -27,6 +38,19 @@ export default function NewRoom() {
       title: newRoom,
       authorId: user?.id,
     });
+
+    if(!firebaseRoom) {
+      toast.error("Falha ao criar sala!", {
+        style: {
+          background: "#F56565",
+          color: "#FFF"
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#F56565"
+        }
+      });
+    }
     
     Router.push(`/rooms/${firebaseRoom.key}`);
   }
@@ -67,6 +91,8 @@ export default function NewRoom() {
           </p>
         </div>
       </main>
+
+      <Toaster position="top-right" />
     </div>
   );
 }
