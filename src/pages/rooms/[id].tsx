@@ -109,7 +109,7 @@ export default function Room() {
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
 
-    toast.success("Sala criada com sucesso!", {
+    toast.success("Pergunta enviada!", {
       style: {
         background: "#68D391",
         color: "#FFF"

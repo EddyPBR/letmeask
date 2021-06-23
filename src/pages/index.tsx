@@ -3,6 +3,7 @@ import Image from "next/image";
 import Router from "next/router";
 import { database } from "../services/firebase";
 import { useState, FormEvent } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import Button from "../components/Button";
 import logoSVG from "../assets/images/logo.svg";
@@ -26,13 +27,32 @@ export default function Home() {
     event.preventDefault();
 
     if (roomCode.trim() === "") {
+      toast.error("Campo deve ser preenchido!", {
+        style: {
+          background: "#F56565",
+          color: "#FFF"
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#F56565"
+        }
+      });
       return;
     }
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if (!roomRef.exists()) {
-      alert("A sala não existe :(");
+      toast.error("Sala não encontrada", {
+        style: {
+          background: "#F56565",
+          color: "#FFF"
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#F56565"
+        }
+      });
       return;
     }
 
@@ -77,6 +97,8 @@ export default function Home() {
           </form>
         </div>
       </main>
+
+      <Toaster position="top-right" />
     </div>
   );
 }
