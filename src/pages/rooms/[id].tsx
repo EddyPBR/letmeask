@@ -3,6 +3,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { database } from "../../services/firebase";
 import { useState, useEffect, FormEvent } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import RoomCode from "../../components/RoomCode";
 import Button from "../../components/Button";
@@ -69,11 +70,31 @@ export default function Room() {
     event.preventDefault();
 
     if (newQuestion.trim() === "") {
+      toast.error("Campo deve ser preenchido!", {
+        style: {
+          background: "#F56565",
+          color: "#FFF"
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#F56565"
+        }
+      });
       return;
     }
 
     if (!user) {
-      throw new Error("Você precisa estar logado!");
+      toast.error("Usuário não encontrado", {
+        style: {
+          background: "#F56565",
+          color: "#FFF"
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#F56565"
+        }
+      });
+      return;
     }
 
     const question = {
@@ -87,6 +108,17 @@ export default function Room() {
     };
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
+
+    toast.success("Sala criada com sucesso!", {
+      style: {
+        background: "#68D391",
+        color: "#FFF"
+      },
+      iconTheme: {
+        primary: "#FFF",
+        secondary: "#68D391"
+      }
+    });
 
     setNewQuestion("");
   }
@@ -145,6 +177,8 @@ export default function Room() {
           </div>
         </form>
       </main>
+
+      <Toaster position="top-right" />
     </>
   );
 }
