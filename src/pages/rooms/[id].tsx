@@ -2,12 +2,33 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import { database } from "../../services/firebase";
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import useAuth from "../../hooks/useAuth";
 import RoomCode from "../../components/RoomCode";
 import Button from "../../components/Button";
 import logoSVG from "../../assets/images/logo.svg";
 import styles from "../../assets/styles/pages/Room.module.scss";
+
+type FirebaseQuestions = Record<string, {
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isAnswered: boolean;
+  isHighLighted: boolean;
+}>
+
+type Question = {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isAnswered: boolean;
+  isHighLighted: boolean;
+}
 
 type RoomQueryParams = {
   id?: string;
@@ -19,8 +40,30 @@ export default function Room() {
   const { id: roomId }: RoomQueryParams = router.query;
 
   const [newQuestion, setNewQuestion] = useState("");
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [title, setTitle] = useState("");
 
-  console.log(user?.avatar);
+  useEffect(() => {
+    const roomRef = database.ref(`rooms/${roomId}`);
+
+    roomRef.on("value", room => {
+      const databaseRoom = room.val();
+      const firebaseQuestions: FirebaseQuestions = databaseRoom?.questions ?? {};
+
+      const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
+        return {
+          id: key,
+          content: value.content,
+          author: value.author,
+          isHighLighted: value.isHighLighted,
+          isAnswered: value.isAnswered,
+        };
+      });
+
+      setTitle(databaseRoom?.title);
+      setQuestions(parsedQuestions);
+    });
+  }, [roomId]);
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -51,7 +94,7 @@ export default function Room() {
   return (
     <>
       <Head>
-        <title>Sala aberta | Letmetask</title>
+        <title>Sala {`${title ? title : "aberta"}`} | Letmetask</title>
       </Head>
 
       <header className={styles.header}>
@@ -63,8 +106,12 @@ export default function Room() {
 
       <main className={styles.main}>
         <div>
-          <h1>Sala React</h1>
-          <span>4 perguntas</span>
+          <h1>Sala {title}</h1>
+          {
+            questions.length > 0 && (
+              <span>{questions.length} {questions.length > 1 ? "perguntas" : "pergunta"}</span>
+            )
+          }
         </div>
 
         <form
