@@ -27,7 +27,7 @@
       }
     }
 
-    @media(max-width: 520px) {
+    @media(max-width: 768px) {
       flex-direction: column;
 
       // Image component
@@ -35,6 +35,21 @@
         margin-bottom: 2rem;
       }
     }
+  }
+
+  & > div > div:last-child {
+    width: 100%;
+    max-width: 30rem;
+
+    @media (max-width: 768px) {
+      margin-top: 1rem;
+      max-width: 18rem;
+      flex-direction: column;
+    }
+  }
+
+  & > div > div > button:last-child {
+    min-width: 10rem;
   }
 }
 
