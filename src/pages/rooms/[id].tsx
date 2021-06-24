@@ -85,6 +85,17 @@ export default function Room() {
     if (!user) {
       await signInWithGoogle();
     }
+
+    toast.success("Logado com sucesso!", {
+      style: {
+        background: "#68D391",
+        color: "#FFF"
+      },
+      iconTheme: {
+        primary: "#FFF",
+        secondary: "#68D391"
+      }
+    });
   }
 
   async function handleLikeQuestion(questionId: string, likeId: string | undefined) {

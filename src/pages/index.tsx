@@ -20,6 +20,17 @@ export default function Home() {
       await signInWithGoogle();
     }
 
+    toast.success("Logado com sucesso!", {
+      style: {
+        background: "#68D391",
+        color: "#FFF"
+      },
+      iconTheme: {
+        primary: "#FFF",
+        secondary: "#68D391"
+      }
+    });
+
     Router.push("/rooms/new");
   }
 
@@ -44,6 +55,20 @@ export default function Home() {
 
     if (!roomRef.exists()) {
       toast.error("Sala não encontrada", {
+        style: {
+          background: "#F56565",
+          color: "#FFF"
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#F56565"
+        }
+      });
+      return;
+    }
+
+    if (roomRef.val().closedAt) {
+      toast.error("Sala já foi encerrada", {
         style: {
           background: "#F56565",
           color: "#FFF"
