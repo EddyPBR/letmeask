@@ -99,6 +99,20 @@ export default function Room() {
   }
 
   async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
+    if(!user) {
+      toast.error("Necessário fazer login", {
+        style: {
+          background: "#F56565",
+          color: "#FFF",
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#F56565",
+        },
+      });
+      return
+    }
+
     if(likeId) {
       await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
     } else {

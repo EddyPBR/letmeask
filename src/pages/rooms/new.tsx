@@ -52,6 +52,17 @@ export default function NewRoom() {
       });
       return;
     }
+
+    toast.success("Sala foi aberta!", {
+      style: {
+        background: "#68D391",
+        color: "#FFF"
+      },
+      iconTheme: {
+        primary: "#FFF",
+        secondary: "#68D391"
+      }
+    });
     
     Router.push(`/rooms/${firebaseRoom.key}`);
   }

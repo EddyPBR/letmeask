@@ -81,6 +81,17 @@ export default function Home() {
       return;
     }
 
+    toast.success("Bem-vindo a sala!", {
+      style: {
+        background: "#68D391",
+        color: "#FFF"
+      },
+      iconTheme: {
+        primary: "#FFF",
+        secondary: "#68D391"
+      }
+    });
+
     Router.push(`rooms/${roomCode}`);
   }
 
