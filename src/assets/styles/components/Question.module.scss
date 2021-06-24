@@ -59,6 +59,18 @@
           filter: brightness(0.7);
         }
       }
+
+      &.deleteButton {
+        transition: filter .2s;
+
+        svg path {
+          stroke: var(--red);
+        }
+
+        &:hover {
+          filter: brightness(1.2);
+        }
+      }
     }
   }
 }
