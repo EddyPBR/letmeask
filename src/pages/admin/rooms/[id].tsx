@@ -125,6 +125,7 @@ export default function AdminRoom() {
               key={question.id}
               content={question.content}
               author={question.author}
+              isAdmin
             />
           );
         })}

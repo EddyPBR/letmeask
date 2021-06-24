@@ -81,9 +81,19 @@ export default function Room() {
     setNewQuestion("");
   }
 
-  async function handleCreateRoom() {
+  async function handleLogin() {
     if (!user) {
       await signInWithGoogle();
+    }
+  }
+
+  async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
+    if(likeId) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
+    } else {
+      await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
+        authorId: user?.id,
+      });
     }
   }
 
@@ -141,7 +151,7 @@ export default function Room() {
             ) : (
               <span>
                 Para enviar uma pergunta,{" "}
-                <button type="button" onClick={handleCreateRoom}>
+                <button type="button" onClick={handleLogin}>
                   faça seu login
                 </button>
                 .
@@ -159,6 +169,10 @@ export default function Room() {
               key={question.id}
               content={question.content}
               author={question.author}
+              likeId={question.likeId}
+              likeCount={question.likeCount}
+              id={question.id}
+              handleLikeQuestion={handleLikeQuestion}
             />
           );
         })}
