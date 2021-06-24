@@ -5,6 +5,7 @@ import { database } from "../../services/firebase";
 import { useState, useEffect, FormEvent } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import Question from "../../components/Question";
 import RoomCode from "../../components/RoomCode";
 import Button from "../../components/Button";
 import logoSVG from "../../assets/images/logo.svg";
@@ -184,6 +185,18 @@ export default function Room() {
             </Button>
           </div>
         </form>
+
+        {
+          questions.map((question) => {
+            return(
+              <Question
+                key={question.id}
+                content={question.content}
+                author={question.author}
+              />
+            )
+          })
+        }
       </main>
     </>
   );
