@@ -13,6 +13,19 @@
 
   cursor: pointer;
   border: 0;
+  min-width: 10rem;
+
+  &.outlined {
+    background: var(--white);
+    border: 1px solid var(--purple);
+    color: var(--purple);
+    transition: background 0.3s;
+
+    &:hover {
+      background: var(--purple);
+      color: var(--white);
+    }
+  }
 
   // Image component
   div {
