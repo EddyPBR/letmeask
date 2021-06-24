@@ -18,6 +18,15 @@
       max-height: 3rem;
     }
 
+    > div {
+      display: flex;
+      gap: 1rem;
+
+      > button {
+        height: 2.5rem;
+      }
+    }
+
     @media(max-width: 520px) {
       flex-direction: column;
 
