@@ -1,10 +1,8 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
-import { database } from "../../../services/firebase";
-import { useState, FormEvent } from "react";
 import toast from "react-hot-toast";
-import useAuth from "../../../hooks/useAuth";
+import { database } from "../../../services/firebase";
 import useRoom from "../../../hooks/useRoom";
 import Question from "../../../components/Question";
 import RoomCode from "../../../components/RoomCode";
@@ -17,73 +15,43 @@ type RoomQueryParams = {
 };
 
 export default function AdminRoom() {
-  const { user, signInWithGoogle } = useAuth();
   const router = useRouter();
   const { id: roomId }: RoomQueryParams = router.query;
-
-  const [newQuestion, setNewQuestion] = useState("");
   const { title, questions } = useRoom(roomId);
 
-  async function handleSendQuestion(event: FormEvent) {
-    event.preventDefault();
+  async function handleEndRoom() {
+    await database.ref(`rooms/${roomId}`).update({
+      closedAt: new Date(),
+    });
 
-    if (newQuestion.trim() === "") {
-      toast.error("Campo deve ser preenchido!", {
-        style: {
-          background: "#F56565",
-          color: "#FFF",
-        },
-        iconTheme: {
-          primary: "#FFF",
-          secondary: "#F56565",
-        },
-      });
-      return;
-    }
-
-    if (!user) {
-      toast.error("Usuário não encontrado", {
-        style: {
-          background: "#F56565",
-          color: "#FFF",
-        },
-        iconTheme: {
-          primary: "#FFF",
-          secondary: "#F56565",
-        },
-      });
-      return;
-    }
-
-    const question = {
-      content: newQuestion,
-      author: {
-        name: user.name,
-        avatar: user.avatar,
-      },
-      isHighLighted: false,
-      isAnswer: false,
-    };
-
-    await database.ref(`rooms/${roomId}/questions`).push(question);
-
-    toast.success("Pergunta enviada!", {
+    toast.success("Sala foi fechada!", {
       style: {
         background: "#68D391",
-        color: "#FFF",
+        color: "#FFF"
       },
       iconTheme: {
         primary: "#FFF",
-        secondary: "#68D391",
-      },
+        secondary: "#68D391"
+      }
     });
 
-    setNewQuestion("");
+    Router.push("/")
   }
 
-  async function handleCreateRoom() {
-    if (!user) {
-      await signInWithGoogle();
+  async function handleDeleteQuestion(questionId: string) {
+    if(window.confirm("Tem certeza que você deseja excluir esta pergunta?")) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+
+      toast.success("Pergunta foi removida!", {
+        style: {
+          background: "#68D391",
+          color: "#FFF"
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#68D391"
+        }
+      });
     }
   }
 
@@ -103,7 +71,7 @@ export default function AdminRoom() {
           <Image src={logoSVG} alt="Letmeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button type="button" isOutlined>Encerrar sala</Button>
+            <Button type="button" isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
           </div>
         </div>
       </header>
@@ -123,9 +91,11 @@ export default function AdminRoom() {
           return (
             <Question
               key={question.id}
+              id={question.id}
               content={question.content}
               author={question.author}
               isAdmin
+              handleDeleteQuestion={handleDeleteQuestion}
             />
           );
         })}
