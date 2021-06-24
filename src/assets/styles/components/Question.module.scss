@@ -5,7 +5,7 @@
   padding: 1.5rem;
 
   & + .question {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
 
   p {
@@ -21,17 +21,43 @@
     .userInfo {
       display: flex;
       align-items: center;
-    
+
       img {
         width: 32px;
         height: 32px;
         border-radius: 50%;
       }
-    
+
       > span {
         margin-left: 0.5rem;
         color: var(--gray-dark);
         font: 400 0.875rem "Roboto", sans-serif;
+      }
+    }
+
+    button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+
+      &.likeButton {
+        display: flex;
+        align-items: flex-end;
+        color: var(--gray-dark);
+        gap: 0.5rem;
+        transition: filter .2s;
+
+        &.liked {
+          color: var(--purple);
+
+          svg path {
+            stroke: var(--purple);
+          }
+        }
+
+        &:hover {
+          filter: brightness(0.7);
+        }
       }
     }
   }
