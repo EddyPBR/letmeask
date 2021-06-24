@@ -1,36 +1,16 @@
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import { database } from "../../services/firebase";
-import { useState, useEffect, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import useRoom from "../../hooks/useRoom";
 import Question from "../../components/Question";
 import RoomCode from "../../components/RoomCode";
 import Button from "../../components/Button";
 import logoSVG from "../../assets/images/logo.svg";
 import styles from "../../assets/styles/pages/Room.module.scss";
-
-type FirebaseQuestions = Record<string, {
-  author: {
-    name: string;
-    avatar: string;
-  }
-  content: string;
-  isAnswered: boolean;
-  isHighLighted: boolean;
-}>
-
-type Question = {
-  id: string;
-  author: {
-    name: string;
-    avatar: string;
-  }
-  content: string;
-  isAnswered: boolean;
-  isHighLighted: boolean;
-}
 
 type RoomQueryParams = {
   id?: string;
@@ -42,30 +22,7 @@ export default function Room() {
   const { id: roomId }: RoomQueryParams = router.query;
 
   const [newQuestion, setNewQuestion] = useState("");
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [title, setTitle] = useState("");
-
-  useEffect(() => {
-    const roomRef = database.ref(`rooms/${roomId}`);
-
-    roomRef.on("value", room => {
-      const databaseRoom = room.val();
-      const firebaseQuestions: FirebaseQuestions = databaseRoom?.questions ?? {};
-
-      const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
-        return {
-          id: key,
-          content: value.content,
-          author: value.author,
-          isHighLighted: value.isHighLighted,
-          isAnswered: value.isAnswered,
-        };
-      });
-
-      setTitle(databaseRoom?.title);
-      setQuestions(parsedQuestions);
-    });
-  }, [roomId]);
+  const { title, questions } = useRoom(roomId);
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -74,12 +31,12 @@ export default function Room() {
       toast.error("Campo deve ser preenchido!", {
         style: {
           background: "#F56565",
-          color: "#FFF"
+          color: "#FFF",
         },
         iconTheme: {
           primary: "#FFF",
-          secondary: "#F56565"
-        }
+          secondary: "#F56565",
+        },
       });
       return;
     }
@@ -88,12 +45,12 @@ export default function Room() {
       toast.error("Usuário não encontrado", {
         style: {
           background: "#F56565",
-          color: "#FFF"
+          color: "#FFF",
         },
         iconTheme: {
           primary: "#FFF",
-          secondary: "#F56565"
-        }
+          secondary: "#F56565",
+        },
       });
       return;
     }
@@ -113,12 +70,12 @@ export default function Room() {
     toast.success("Pergunta enviada!", {
       style: {
         background: "#68D391",
-        color: "#FFF"
+        color: "#FFF",
       },
       iconTheme: {
         primary: "#FFF",
-        secondary: "#68D391"
-      }
+        secondary: "#68D391",
+      },
     });
 
     setNewQuestion("");
@@ -134,7 +91,10 @@ export default function Room() {
     <>
       <Head>
         <meta property="og:title" content={`Letmeask ${title ? title : ""}`} />
-        <meta property="og:description" content={`A sala ${title} está ao vivo e com tudo preparado para retirar suas dúvidas!`} />
+        <meta
+          property="og:description"
+          content={`A sala ${title} está ao vivo e com tudo preparado para retirar suas dúvidas!`}
+        />
         <title>Sala {`${title ? title : "aberta"}`} | Letmetask</title>
       </Head>
 
@@ -148,11 +108,12 @@ export default function Room() {
       <main className={styles.main}>
         <div>
           <h1>Sala {title}</h1>
-          {
-            questions.length > 0 && (
-              <span>{questions.length} {questions.length > 1 ? "perguntas" : "pergunta"}</span>
-            )
-          }
+          {questions.length > 0 && (
+            <span>
+              {questions.length}{" "}
+              {questions.length > 1 ? "perguntas" : "pergunta"}
+            </span>
+          )}
         </div>
 
         <form
@@ -167,36 +128,40 @@ export default function Room() {
           />
 
           <div>
-            {
-              user ? (
-                <div className={styles.userInfo}>
-                  <Image src={user?.avatar} alt={user.name} width="32" height="32" />
-                  <span>{user.name}</span>
-                </div>
-              ) : (
-                <span>
-                  Para enviar uma pergunta,{" "}
-                  <button type="button" onClick={handleCreateRoom}>faça seu login</button>.
-                </span>
-              )
-            }
+            {user ? (
+              <div className={styles.userInfo}>
+                <Image
+                  src={user?.avatar}
+                  alt={user.name}
+                  width="32"
+                  height="32"
+                />
+                <span>{user.name}</span>
+              </div>
+            ) : (
+              <span>
+                Para enviar uma pergunta,{" "}
+                <button type="button" onClick={handleCreateRoom}>
+                  faça seu login
+                </button>
+                .
+              </span>
+            )}
             <Button type="submit" disabled={!user}>
               Enviar pergunta
             </Button>
           </div>
         </form>
 
-        {
-          questions.map((question) => {
-            return(
-              <Question
-                key={question.id}
-                content={question.content}
-                author={question.author}
-              />
-            )
-          })
-        }
+        {questions.map((question) => {
+          return (
+            <Question
+              key={question.id}
+              content={question.content}
+              author={question.author}
+            />
+          );
+        })}
       </main>
     </>
   );
