@@ -1,4 +1,7 @@
 import Image from "next/image";
+import toast from "react-hot-toast";
+import { database } from "../services/firebase";
+import useAuth from "../hooks/useAuth";
 import styles from "../assets/styles/components/Question.module.scss";
 
 type QuestionProps = {
@@ -11,8 +14,7 @@ type QuestionProps = {
   likeId?: string;
   likeCount?: number;
   isAdmin?: boolean;
-  handleLikeQuestion?: (questionId: string, likeId: string | undefined) => Promise<void>;
-  handleDeleteQuestion?: (questionId: string) => Promise<void>;
+  roomId: string;
 };
 
 export default function Question({
@@ -22,9 +24,51 @@ export default function Question({
   likeId,
   likeCount,
   isAdmin,
-  handleLikeQuestion,
-  handleDeleteQuestion,
+  roomId,
 }: QuestionProps) {
+  const { user } = useAuth();
+
+  async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
+    if(!user) {
+      toast.error("Necessário fazer login", {
+        style: {
+          background: "#F56565",
+          color: "#FFF",
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#F56565",
+        },
+      });
+      return
+    }
+
+    if(likeId) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove();
+    } else {
+      await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
+        authorId: user?.id,
+      });
+    }
+  }
+
+  async function handleDeleteQuestion(questionId: string) {
+    if(window.confirm("Tem certeza que você deseja excluir esta pergunta?")) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+
+      toast.success("Pergunta foi removida!", {
+        style: {
+          background: "#68D391",
+          color: "#FFF"
+        },
+        iconTheme: {
+          primary: "#FFF",
+          secondary: "#68D391"
+        }
+      });
+    }
+  }
+  
   return (
     <section className={styles.question}>
       <p>{content}</p>

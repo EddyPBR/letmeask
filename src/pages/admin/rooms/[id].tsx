@@ -38,23 +38,6 @@ export default function AdminRoom() {
     Router.push("/")
   }
 
-  async function handleDeleteQuestion(questionId: string) {
-    if(window.confirm("Tem certeza que você deseja excluir esta pergunta?")) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
-
-      toast.success("Pergunta foi removida!", {
-        style: {
-          background: "#68D391",
-          color: "#FFF"
-        },
-        iconTheme: {
-          primary: "#FFF",
-          secondary: "#68D391"
-        }
-      });
-    }
-  }
-
   return (
     <>
       <Head>
@@ -95,7 +78,7 @@ export default function AdminRoom() {
               content={question.content}
               author={question.author}
               isAdmin
-              handleDeleteQuestion={handleDeleteQuestion}
+              roomId={roomId}
             />
           );
         })}
