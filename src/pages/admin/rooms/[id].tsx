@@ -162,7 +162,7 @@ export default function AdminRoom() {
               <button type="button" onClick={() => setIsModalOpen(false)}>
                 Cancelar
               </button>
-              <button type="button" onClick={() => handleEndRoom}>
+              <button type="button" onClick={handleEndRoom}>
                 Sim, excluir
               </button>
             </div>
