@@ -180,6 +180,7 @@
     font: 700 1.5rem "Poppins", sans-serif;
     color: var(--black);
     margin-bottom: 0.75rem;
+    text-align: center;
   }
 
   p {
@@ -195,12 +196,20 @@
     align-items: center;
     gap: 0.5rem;
 
+    @media(max-width: 400px) {
+      flex-direction: column;
+    }
+
     button {
       padding: 0.875rem 2rem;
       cursor: pointer;
       border: 1px solid transparent;
       border-radius: 0.5rem;
       transition: filter .2s;
+
+      @media(max-width: 400px) {
+        width: 100%;
+      }
 
       &:hover {
         filter: brightness(0.9);
