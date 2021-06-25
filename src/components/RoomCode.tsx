@@ -17,13 +17,14 @@ export default function RoomCode({ code }: RoomCodeProps) {
 
     toast.success("Copiado para o clipboard!", {
       style: {
-        background: "#68D391",
+        background: "#97c4f8",
         color: "#FFF"
       },
       iconTheme: {
         primary: "#FFF",
-        secondary: "#68D391"
-      }
+        secondary: "#a0cafa"
+      },
+      icon: "📎"
     });
   }
 
