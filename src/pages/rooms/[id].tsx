@@ -61,8 +61,8 @@ export default function Room() {
         name: user.name,
         avatar: user.avatar,
       },
-      isHighLighted: false,
-      isAnswer: false,
+      isHighlighted: false,
+      isAnswered: false,
     };
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
@@ -174,6 +174,8 @@ export default function Room() {
               likeCount={question.likeCount}
               id={question.id}
               roomId={roomId}
+              isAnswered={question.isAnswered}
+              isHighlighted={question.isHighlighted}
             />
           );
         })}

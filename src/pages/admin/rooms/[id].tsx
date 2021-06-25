@@ -79,6 +79,8 @@ export default function AdminRoom() {
               author={question.author}
               isAdmin
               roomId={roomId}
+              isAnswered={question.isAnswered}
+              isHighlighted={question.isHighlighted}
             />
           );
         })}

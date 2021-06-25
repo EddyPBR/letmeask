@@ -3,6 +3,20 @@
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.75rem rgba(0, 0, 0, 0.04);
   padding: 1.5rem;
+  border: 1px solid transparent;
+
+  &.answered {
+    background: #DBDCDD;
+  }
+
+  &.highlighted {
+    background: #F4F0FF;
+    border: 1px solid var(--purple);
+
+    .userInfo > span {
+      color: var(--black);
+    }
+  }
 
   & + .question {
     margin-top: 0.5rem;
@@ -17,6 +31,11 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 1.5rem;
+
+    div:last-child {
+      display: flex;
+      gap: 1rem;
+    }
 
     .userInfo {
       display: flex;
@@ -61,14 +80,36 @@
       }
 
       &.deleteButton {
-        transition: filter .2s;
-
-        svg path {
-          stroke: var(--red);
+        & svg path {
+          transition: stroke .3s;
         }
 
-        &:hover {
-          filter: brightness(1.2);
+        &:hover svg path {
+          stroke: var(--red);
+        }
+      }
+
+      &.checkButton {
+        & svg path, & circle {
+          transition: stroke .3s;
+        }
+
+        &:hover svg path, &:hover circle {
+          stroke: #68D391;
+        }
+      }
+
+      &.answerButton {
+        & svg path, & circle {
+          transition: stroke .3s;
+        }
+
+        &:hover svg path, &:hover circle {
+          stroke: var(--blue);
+        }
+
+        &.active svg path {
+          stroke: var(--blue);
         }
       }
     }
