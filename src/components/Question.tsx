@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import Modal from "react-modal";
 import { database } from "../services/firebase";
 import useAuth from "../hooks/useAuth";
 import styles from "../assets/styles/components/Question.module.scss";
@@ -31,6 +33,7 @@ export default function Question({
   isHighlighted = false
 }: QuestionProps) {
   const { user } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
     if(!user) {
@@ -57,20 +60,18 @@ export default function Question({
   }
 
   async function handleDeleteQuestion(questionId: string) {
-    if(window.confirm("Tem certeza que você deseja excluir esta pergunta?")) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
 
-      toast.success("Pergunta foi removida!", {
-        style: {
-          background: "#68D391",
-          color: "#FFF"
-        },
-        iconTheme: {
-          primary: "#FFF",
-          secondary: "#68D391"
-        }
-      });
-    }
+    toast.success("Pergunta foi removida!", {
+      style: {
+        background: "#68D391",
+        color: "#FFF"
+      },
+      iconTheme: {
+        primary: "#FFF",
+        secondary: "#68D391"
+      }
+    });
   }
 
   async function handleCheckQuestionAsAnswered(questionId: string) {
@@ -177,7 +178,7 @@ export default function Question({
                   className={styles.deleteButton}
                   type="button"
                   aria-label="Remover pergunta"
-                  onClick={() => handleDeleteQuestion(id)}
+                  onClick={() => setIsModalOpen(true)}
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 5.99988H5H21" stroke="#737380" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -189,6 +190,52 @@ export default function Question({
           }
         </div>
       </footer>
+
+      <Modal
+        isOpen={isModalOpen}
+        ariaHideApp={false}
+        onRequestClose={() => setIsModalOpen(false)}
+        contentLabel="Deseja mesmo excluir o comentário?"
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.75)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          },
+          content: {
+            position: "initial",
+            width: "37rem",
+            maxWidth: "90vw",
+            height: "23rem",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }
+        }}
+      >
+        <div className={styles.excludeModal}>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 5.99988H5H21" stroke="#737380" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M8 5.99988V3.99988C8 3.46944 8.21071 2.96074 8.58579 2.58566C8.96086 2.21059 9.46957 1.99988 10 1.99988H14C14.5304 1.99988 15.0391 2.21059 15.4142 2.58566C15.7893 2.96074 16 3.46944 16 3.99988V5.99988M19 5.99988V19.9999C19 20.5303 18.7893 21.039 18.4142 21.4141C18.0391 21.7892 17.5304 21.9999 17 21.9999H7C6.46957 21.9999 5.96086 21.7892 5.58579 21.4141C5.21071 21.039 5 20.5303 5 19.9999V5.99988H19Z" stroke="#737380" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+
+          <b>Encerrar a sala</b>
+
+          <p>Tem certeza que você deseja exluir esta pergunta?</p>
+          
+          <div>
+            <button type="button" onClick={() => setIsModalOpen(false)}>
+              Cancelar
+            </button>
+            <button type="button" onClick={() => handleDeleteQuestion(id)}>
+              Sim, excluir
+            </button>
+          </div>
+        </div>
+      </Modal>
     </section>
   );
 }

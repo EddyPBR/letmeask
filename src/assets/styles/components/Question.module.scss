@@ -6,11 +6,11 @@
   border: 1px solid transparent;
 
   &.answered {
-    background: #DBDCDD;
+    background: #dbdcdd;
   }
 
   &.highlighted {
-    background: #F4F0FF;
+    background: #f4f0ff;
     border: 1px solid var(--purple);
 
     .userInfo > span {
@@ -64,7 +64,7 @@
         align-items: flex-end;
         color: var(--gray-dark);
         gap: 0.5rem;
-        transition: filter .2s;
+        transition: filter 0.2s;
 
         &.liked {
           color: var(--purple);
@@ -81,7 +81,7 @@
 
       &.deleteButton {
         & svg path {
-          transition: stroke .3s;
+          transition: stroke 0.3s;
         }
 
         &:hover svg path {
@@ -90,27 +90,95 @@
       }
 
       &.checkButton {
-        & svg path, & circle {
-          transition: stroke .3s;
+        & svg path,
+        & circle {
+          transition: stroke 0.3s;
         }
 
-        &:hover svg path, &:hover circle {
-          stroke: #68D391;
+        &:hover svg path,
+        &:hover circle {
+          stroke: #68d391;
         }
       }
 
       &.answerButton {
-        & svg path, & circle {
-          transition: stroke .3s;
+        & svg path,
+        & circle {
+          transition: stroke 0.3s;
         }
 
-        &:hover svg path, &:hover circle {
+        &:hover svg path,
+        &:hover circle {
           stroke: var(--blue);
         }
 
         &.active svg path {
           stroke: var(--blue);
         }
+      }
+    }
+  }
+}
+
+.excludeModal {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 1.5rem;
+
+    path {
+      stroke: var(--red);
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  b {
+    font: 700 1.5rem "Poppins", sans-serif;
+    color: var(--black);
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    font: 400 1rem "Roboto", sans-serif;
+    color: var(--gray-dark);
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    button {
+      padding: 0.875rem 2rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 0.5rem;
+      transition: filter .2s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+
+      &:first-child {
+        background: var(--gray-light);
+        color: var(--gray-dark);
+      }
+
+      &:last-child {
+        background: var(--red);
+        color: var(--white);
       }
     }
   }
