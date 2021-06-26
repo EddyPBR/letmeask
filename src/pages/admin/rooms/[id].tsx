@@ -44,12 +44,7 @@ export default function AdminRoom() {
   return (
     <>
       <Head>
-        <meta property="og:title" content={`Letmeask ${title ? title : ""}`} />
-        <meta
-          property="og:description"
-          content={`A sala ${title} está ao vivo e com tudo preparado para retirar suas dúvidas!`}
-        />
-        <title>Sala {`${title ? title : "aberta"}`} | Letmetask</title>
+        <title>{`Admin sala ${title}`} | Letmetask</title>
       </Head>
 
       <header className={styles.header}>
