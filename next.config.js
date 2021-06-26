@@ -3,7 +3,6 @@ const withPWA = require("next-pwa");
 
 module.exports = withPlugins([
   {
-    reactStrictMode: true,
     images: {
       domains: ["lh3.googleusercontent.com"],
     },
@@ -17,8 +16,6 @@ module.exports = withPlugins([
         dest: "public",
         register: true,
         sw: "/sw.js",
-        scope: "/",
-        start_url: "/"
       },
     },
   ],
