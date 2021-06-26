@@ -213,6 +213,9 @@ export default function Question({
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            padding: "0",
+            border: "none",
+            background: "transparent",
           }
         }}
       >

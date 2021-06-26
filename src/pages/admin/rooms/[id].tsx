@@ -118,6 +118,9 @@ export default function AdminRoom() {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              padding: "0",
+              border: "none",
+              background: "transparent",
             },
           }}
         >

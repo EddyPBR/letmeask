@@ -6,11 +6,12 @@
   border: 1px solid transparent;
 
   &.answered {
-    background: #dbdcdd;
+    background: var(--white);
+    opacity: 0.4;
   }
 
   &.highlighted {
-    background: #f4f0ff;
+    background: var(--box-background);
     border: 1px solid var(--purple);
 
     .userInfo > span {
@@ -123,6 +124,7 @@
 .excludeModal {
   height: 100%;
   width: 100%;
+  background: var(--white);
 
   display: flex;
   flex-direction: column;
