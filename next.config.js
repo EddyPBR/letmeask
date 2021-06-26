@@ -17,6 +17,8 @@ module.exports = withPlugins([
         dest: "public",
         register: true,
         sw: "/sw.js",
+        scope: "/",
+        start_url: "/"
       },
     },
   ],
