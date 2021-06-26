@@ -50,6 +50,10 @@
   button, span, p, textarea {
     color: #f5f5f5 !important;
   }
+
+  img[alt="Letmeask"] {
+    filter: invert(1) hue-rotate(180deg) !important;
+  }
 }
 
 body {
