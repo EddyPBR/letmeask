@@ -199,7 +199,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       title: firebaseRoom.title,
     },
-    revalidate: 1,
+    revalidate: 30,
   };
 };
 
@@ -223,6 +223,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
