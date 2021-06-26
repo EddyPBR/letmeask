@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
@@ -12,17 +13,23 @@ import Button from "../../components/Button";
 import logoSVG from "../../assets/images/logo.svg";
 import styles from "../../assets/styles/pages/Room.module.scss";
 
+type FirebaseRooms = Record<string, {
+  authorId: string;
+  questions: {},
+  title: string;
+}>;
+
 type RoomQueryParams = {
   id?: string;
 };
 
-export default function Room() {
+export default function Room({ title }) {
   const { user, signInWithGoogle } = useAuth();
   const router = useRouter();
   const { id: roomId }: RoomQueryParams = router.query;
 
   const [newQuestion, setNewQuestion] = useState("");
-  const { title, questions } = useRoom(roomId);
+  const { questions } = useRoom(roomId);
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -182,4 +189,39 @@ export default function Room() {
       </main>
     </>
   );
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const roomRef = await database.ref(`rooms/${params.id}`).get();
+  const firebaseRoom: FirebaseRooms = roomRef.val();
+
+  return {
+    props: {
+      title: firebaseRoom.title,
+    },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const roomRef = await database.ref(`rooms`).get();
+  const firebaseRooms: FirebaseRooms[] = roomRef.val();
+
+  const roomsProps = Object.entries(firebaseRooms).map(([key]) => {
+    return {
+      roomId: key,
+    }
+  });
+
+  const paths = roomsProps.map((room) => {
+    return {
+      params: {
+        id: room.roomId,
+      }
+    }
+  });
+
+  return {
+    paths: paths,
+    fallback: false,
+  };
 }
