@@ -7,6 +7,7 @@ export default class MyDocument extends Document {
         <Head>
           <link rel="shortcut icon" href="/favicon.png" type="image/png" />
           <link rel="icon" href="/favicon.png" />
+          <link rel="apple-touch-icon" href="/apple-icon.png" />
           <link rel="manifest" href="/manifest.json" />
 
           <meta httpEquiv="x-ua-compatible" content="IE=edge,chrome=1" />

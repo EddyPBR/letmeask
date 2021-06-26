@@ -28,6 +28,11 @@
       "src": "/icon-1024x1024.png",
       "sizes": "1024x1024",
       "type": "image/png"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "196x196",
+      "type": "image/png"
     }
   ]
 }
