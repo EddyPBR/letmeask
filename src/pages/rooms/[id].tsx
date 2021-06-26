@@ -199,6 +199,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       title: firebaseRoom.title,
     },
+    revalidate: 1,
   };
 };
 
