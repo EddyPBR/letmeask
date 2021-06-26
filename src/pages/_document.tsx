@@ -6,7 +6,16 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+          <link rel="icon" href="/favicon.png" />
           <link rel="manifest" href="/manifest.json" />
+
+          <meta httpEquiv="x-ua-compatible" content="IE=edge,chrome=1" />
+          <meta name="MobileOptimized" content="320" />
+          <meta name="HandheldFriendly" content="True" />
+          <meta name="theme-color" content="#835AFD" />
+          <meta name="msapplication-TileColor" content="#835AFD" />
+          <meta name="referrer" content="no-referrer-when-downgrade" />
+          <meta name="google" content="notranslate" />
 
           {/* Google fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,6 +32,7 @@ export default class MyDocument extends Document {
           />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Letmeask" />
+          <meta property="og:site_name" content="Letmeask" />
           <meta
             property="og:description"
             content="Crie sala de perguntas e respostas ao vivo"
@@ -31,10 +41,36 @@ export default class MyDocument extends Document {
             property="og:image"
             content="https://letmeask-virid.vercel.app/letmeask.jpg"
           />
+          <meta
+            property="og:image:secure_url"
+            content="https://letmeask-virid.vercel.app/letmeask.jpg"
+          />
+          <meta property="og:image:alt" content="Thumbnail" />
+          <meta property="og:image:type" content="image/jpg" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
 
+          {/* Twitter */}
+          <meta name="twitter:title" content="Letmeask" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@solrachix" />
+          <meta name="twitter:creator" content="@solrachix" />
+          <meta
+            name="twitter:image"
+            content="https://letmeask-virid.vercel.app/letmeask.jpg"
+          />
+          <meta
+            name="twitter:image:src"
+            content="https://letmeask-virid.vercel.app/letmeask.jpg"
+          />
+          <meta name="twitter:image:alt" content="Thumbnail" />
+          <meta name="twitter:image:width" content="1200" />
+          <meta name="twitter:image:height" content="620" />
+
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta
             name="viewport"
-            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5" // ,user-scalable=no
+            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
           />
         </Head>
         <body>
