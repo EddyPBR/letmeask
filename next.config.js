@@ -6,7 +6,6 @@ module.exports = withPlugins([
     images: {
       domains: ["lh3.googleusercontent.com"],
     },
-    distDir: "build",
   },
   [
     withPWA,
