@@ -54,7 +54,7 @@ export default class MyDocument extends Document {
           {/* Twitter */}
           <meta name="twitter:title" content="Letmeask" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@EddyPBR" />
+          <meta name="twitter:site" content="Letmeask" />
           <meta name="twitter:creator" content="@EddyPBR" />
           <meta
             name="twitter:image"
