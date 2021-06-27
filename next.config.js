@@ -14,6 +14,7 @@ module.exports = withPlugins([
         disable: process.env.NODE_ENV !== "production",
         register: true,
         scope: "/",
+        dest: "public",
         sw: "/service-worker.js",
       },
     },
