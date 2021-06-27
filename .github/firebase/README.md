@@ -38,17 +38,17 @@ clique em `Realtime Database`, agora selecione a aba `Regras`, enfim na box com 
 {
   "rules": {
     "rooms": {
-      ".read": false,
+      ".read": true,
       ".write": "auth != null",
       "$roomId": {
         ".read": true,
-        ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)",
+        ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.uid)",
         "questions": {
           ".read": true,
-          ".write": "auth != null && (!data.exists() || data.parent().child('authorId').val() == auth.id)",
+          ".write": "auth != null && (!data.exists() || data.parent().child('authorId').val() == auth.uid)",
           "likes": {
             ".read": true,
-            ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)",
+            ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.uid)",
           }
         }
       }
