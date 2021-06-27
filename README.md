@@ -27,6 +27,9 @@ Sabendo dessa necessidade, a #Rocketseat no seu evento #NextLevelWeek teve a bri
 um projeto que consiste no ranqueamento de perguntas para que as perguntas prioritárias dos aprensetadores
 das lives sejão as mais ranqueadas ou seja, as dúvidas que são mais frequentes pela comunidade.
 
+Acesse o [vídeo no YouTube](https://www.youtube.com/watch?v=a7P--fnjtzE) e assista a minha apresentação do 
+projeto já hospedado pela Vercel e com configurações extras.
+
 <br />
 
 ## :bulb: Conteúdos abordados
@@ -42,7 +45,7 @@ das lives sejão as mais ranqueadas ou seja, as dúvidas que são mais frequente
 
 <br />
 
-## :rocket: Milha extra
+## :rocket: Trilha extra
 <br />
 
 Foram adicionadas algumas funcionalidades extras e efeitos visuais para melhorar e tornar o projeto 
