@@ -90,12 +90,12 @@ export default function Room({ title }) {
     toast.success("Logado com sucesso!", {
       style: {
         background: "#68D391",
-        color: "#FFF"
+        color: "#FFF",
       },
       iconTheme: {
         primary: "#FFF",
-        secondary: "#68D391"
-      }
+        secondary: "#68D391",
+      },
     });
   }
 
@@ -185,15 +185,25 @@ export default function Room({ title }) {
   );
 }
 
-type FirebaseRooms = Record<string, {
-  authorId: string;
-  questions: {},
-  title: string;
-}>;
+type FirebaseRooms = Record<
+  string,
+  {
+    authorId: string;
+    questions: {};
+    title: string;
+  }
+>;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const roomRef = await database.ref(`rooms/${params.id}`).get();
-  const firebaseRoom: FirebaseRooms = roomRef.val();
+  const firebaseRoom: FirebaseRooms = roomRef?.val();
+
+  if(!firebaseRoom) {
+    return {
+      props: {},
+      revalidade: 30,
+    }
+  }
 
   return {
     props: {
@@ -207,22 +217,29 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const roomRef = await database.ref(`rooms`).get();
   const firebaseRooms: FirebaseRooms[] = roomRef.val();
 
+  if(!firebaseRooms) {
+    return {
+      paths: [],
+      fallback: "blocking",
+    }
+  }
+
   const roomsProps = Object.entries(firebaseRooms).map(([key]) => {
     return {
       roomId: key,
-    }
+    };
   });
 
   const paths = roomsProps.map((room) => {
     return {
       params: {
         id: room.roomId,
-      }
-    }
+      },
+    };
   });
 
   return {
     paths: paths,
     fallback: "blocking",
   };
-}
+};
