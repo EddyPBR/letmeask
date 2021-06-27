@@ -54,8 +54,8 @@ export default class MyDocument extends Document {
           {/* Twitter */}
           <meta name="twitter:title" content="Letmeask" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@solrachix" />
-          <meta name="twitter:creator" content="@solrachix" />
+          <meta name="twitter:site" content="@EddyPBR" />
+          <meta name="twitter:creator" content="@EddyPBR" />
           <meta
             name="twitter:image"
             content="https://letmeask-virid.vercel.app/letmeask.jpg"

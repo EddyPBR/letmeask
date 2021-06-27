@@ -12,9 +12,9 @@ module.exports = withPlugins([
     {
       pwa: {
         disable: process.env.NODE_ENV !== "production",
-        dest: "public",
         register: true,
-        sw: "/sw.js",
+        scope: "/",
+        sw: "/service-worker.js",
       },
     },
   ],
