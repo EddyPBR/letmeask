@@ -64,7 +64,7 @@ export default function NewRoom() {
       }
     });
     
-    Router.push(`/rooms/${firebaseRoom.key}`);
+    Router.push(`/admin/rooms/${firebaseRoom.key}`);
   }
 
   return (
