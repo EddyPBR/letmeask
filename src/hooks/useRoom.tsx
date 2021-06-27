@@ -1,4 +1,6 @@
+import Router from "next/router";
 import { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { database } from "../services/firebase";
 
@@ -44,8 +46,30 @@ export default function useRoom(roomId: string) {
 
     roomRef.on("value", (room) => {
       const databaseRoom = room.val();
+
+      if(databaseRoom?.closedAt && (user?.id !== databaseRoom?.authorId)) {
+        toast.error("Sala foi encerrada pelo admin", {
+          style: {
+            background: "#F56565",
+            color: "#FFF",
+          },
+          iconTheme: {
+            primary: "#FFF",
+            secondary: "#F56565",
+          },
+        });
+
+        Router.push("/");
+
+        return () => {
+          roomRef.off("value");
+        };
+      }
+
       const firebaseQuestions: FirebaseQuestions =
         databaseRoom?.questions ?? {};
+
+      console.log(databaseRoom);
 
       const parsedQuestions = Object.entries(firebaseQuestions).map(
         ([key, value]) => {
