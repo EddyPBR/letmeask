@@ -42,6 +42,24 @@ das lives sejão as mais ranqueadas ou seja, as dúvidas que são mais frequente
 
 <br />
 
+## :rocket: Milha extra
+<br />
+
+Foram adicionadas algumas funcionalidades extras e efeitos visuais para melhorar e tornar o projeto 
+ainda mais intuítivo, lembrando que este projeto foi desenvolvido por mim utilizando o NEXTJS, 
+dentre as funcionalidades extras estão:
+
+- Toasts de avisos do sistemas usando o react-hot-toast
+- Modal de ações críticas do sistema utilizando o react-modal
+- Ordenação de comentários por número de likes e perguntas não respondidas
+- Redirecionamento forçado de usuários/não usuários que estão em determinada sala e o admin encerrar a mesma
+- Geração de página estática quando cadastrar nova sala (cada sala tem um arquivo único, apenas comentários são carregados dinâmicamente, motivo: ajuda no SEO no compartilhamento das páginas)
+- Redirecionamento forçado pelo backend quando alguem que NÃO seja o admin da sala tentar acessar a devida página admin
+- PWA utilizando o next-pwa
+
+
+<br />
+
 ## :wrench: Colocando o projeto para rodar
 <br />
 
@@ -49,11 +67,11 @@ Para colocar o projeto para rodar, basta seguir o passo a passo fornecido logo a
 
 - 1º: Tenha o NODE instalado na sua máquina;
 - 2º: Faça o download deste projeto;
-- 3º: Com o terminal/prompt abra o diretório deste projeto e execute o comando `npm` ou `yarn`;
+- 3º: Com o terminal/prompt abra o diretório deste projeto e execute o comando `npm run` ou `yarn`;
 - 4º: Enquanto executa o comando... siga o passo-a-passo para configurar o firebase neste [link-firebase](https://github.com/EddyPBR/letmeask/tree/main/.github/firebase);
 - 5º: Crie um arquivo `.env.local` no diretório raiz do projeto;
 - 6º: Copie as variaveis do arquivo `.env.example` e cole no `.env.local`, agora preencha as informações com os dados obtidos no firebase `passo 4`;
-- 7º: Após finalizado o comando do `passo 3` e com tudo finalizado, agora execute o comando `npx dev` ou `yarn dev`;
+- 7º: Após finalizado o comando do `passo 3` e com tudo finalizado, agora execute o comando `npm run dev` ou `yarn dev`;
 - 8º: Pronto tudo configurado, faça bom proveito;
 
 <br />
