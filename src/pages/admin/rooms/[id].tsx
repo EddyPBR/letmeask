@@ -1,6 +1,8 @@
+import { GetServerSideProps } from "next";
 import Router, { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
+import { parseCookies } from "nookies";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
@@ -170,3 +172,32 @@ export default function AdminRoom() {
     </>
   );
 }
+
+type FirebaseRoom = {
+  authorId: string;
+  questions: {};
+  title: string;
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { id: roomId } = ctx?.query;
+  const { ["letmeask.userId"]: userId } = parseCookies(ctx);
+
+  const roomRef = await database.ref(`rooms/${roomId}`).get();
+  const firebaseRoom: FirebaseRoom = roomRef.val();
+
+  const { authorId: adminId } = firebaseRoom;
+
+  if (adminId !== userId) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

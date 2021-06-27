@@ -11,7 +11,8 @@ import googleIconSVG from "../assets/images/google-icon.svg";
 import illustrationSVG from "../assets/images/illustration.svg";
 import styles from "../assets/styles/pages/Home.module.scss";
 
-export default function Home() {
+export default function Home(props) {
+  console.log(props)
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState("");
 

@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, ReactNode } from "react";
 import { auth, firebase } from "../services/firebase";
+import { setCookie } from "nookies";
 
 type User = {
   id: string;
@@ -25,6 +26,10 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         const { displayName, photoURL, uid } = user;
+
+        setCookie(undefined, "letmeask.userId", uid, {
+          maxAge: 60 * 60 * 24, // 24 hours
+        });
 
         if (!displayName || !photoURL) {
           throw new Error("Missing information from Google Account.");

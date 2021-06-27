@@ -13,12 +13,6 @@ import Button from "../../components/Button";
 import logoSVG from "../../assets/images/logo.svg";
 import styles from "../../assets/styles/pages/Room.module.scss";
 
-type FirebaseRooms = Record<string, {
-  authorId: string;
-  questions: {},
-  title: string;
-}>;
-
 type RoomQueryParams = {
   id?: string;
 };
@@ -190,6 +184,12 @@ export default function Room({ title }) {
     </>
   );
 }
+
+type FirebaseRooms = Record<string, {
+  authorId: string;
+  questions: {},
+  title: string;
+}>;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const roomRef = await database.ref(`rooms/${params.id}`).get();

@@ -5,7 +5,6 @@ import DarkModeSwitch from "../components/DarkModeSwitch";
 import "../assets/styles/global.scss";
 
 function MyApp({ Component, pageProps }) {
-
   return (
     <AuthProvider>
       <Component {...pageProps} />
