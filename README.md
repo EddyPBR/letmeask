@@ -32,6 +32,10 @@ projeto já hospedado pela Vercel e com configurações extras.
 
 <br />
 
+[![Letmeask_video](https://github.com/EddyPBR/letmeask/blob/main/.github/assets/letmeask-capa.jpg)](https://youtu.be/a7P--fnjtzE)
+
+<br />
+
 ## :bulb: Conteúdos abordados
 <br />
 
@@ -45,7 +49,7 @@ projeto já hospedado pela Vercel e com configurações extras.
 
 <br />
 
-## :rocket: Trilha extra
+## :rocket: Milha extra
 <br />
 
 Foram adicionadas algumas funcionalidades extras e efeitos visuais para melhorar e tornar o projeto 
