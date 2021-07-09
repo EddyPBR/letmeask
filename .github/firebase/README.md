@@ -25,7 +25,19 @@ Assumindo que você tenha feito o login siga o passo-a-passo logo abaixo:
 - No menu lateral esquerdo novamente vá em "Realtime database";
 - Agora clique em "criar banco de dados", será carregada uma box, agora clique em proxima, deixe a opção "modo bloqueado" ativado e clique em ativar e aguarde;
 - No menu lateral esquerdo clique em "Visão geral do projeto", agora nos botões do banner clique em "web", na nova caixa de texto coloque o nome do projeto (Ex.: letmeask-web) deixe a opção "firebase hosting" desativada e clique em "Registrar app" e aguarde;
-- Será mostrada uma box com códigos, copie os valores dos campos que estão dentro da variavel "firebaseConfig" e coloque no arquivo ".env.local" do seu projeto;
+- Será mostrada uma box com códigos, copie os valores dos campos que estão dentro da variavel "firebaseConfig" e no arquivo ".env.local" do seu projeto, preencha os seguintes valores;
+
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_DATABASE_URL=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NODE_ENV=
+```
+
 - Pronto seu firebase esta configurado;
 <br />
 
