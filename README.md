@@ -25,7 +25,7 @@ responder as perguntas, afinal, são clientes/possívels clientes não é mesmo?
 
 Sabendo dessa necessidade, a #Rocketseat no seu evento #NextLevelWeek teve a brilhante idéaia de elaborar 
 um projeto que consiste no ranqueamento de perguntas para que as perguntas prioritárias dos aprensetadores
-das lives sejão as mais ranqueadas ou seja, as dúvidas que são mais frequentes pela comunidade.
+das lives sejam as mais ranqueadas ou seja, as dúvidas que são mais frequentes pela comunidade.
 
 Acesse o [vídeo no YouTube](https://www.youtube.com/watch?v=a7P--fnjtzE) e assista a minha apresentação do 
 projeto já hospedado pela Vercel e com configurações extras.
