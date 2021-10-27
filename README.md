@@ -94,8 +94,8 @@ Este projeto esta sob a [MIT license](LICENSE) para mais detalhes.
 Siga @EddyPBR nas redes :wink:
 <br />
 
-- [Instagram](https://www.instagram.com/edvaldo_junior_dev/)
-- [LinkedIn](https://www.linkedin.com/in/edvaldojuniordev/)
+- [Instagram](https://www.instagram.com/eddy_pbr/)
+- [LinkedIn](https://www.linkedin.com/in/eddypbr/)
 
 <br />
 
